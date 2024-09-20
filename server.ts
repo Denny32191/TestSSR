@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'; // импортируем типы Request и Response
+import express, { Response } from 'express'; 
 import { createServer } from 'vite';
 import { createSSRApp } from 'vue';
 import App from './src/App.vue';
@@ -15,7 +15,7 @@ async function startServer() {
 
   app.use(vite.middlewares);
 
-  app.get('*', async (req: Request, res: Response) => { // Указываем типы для req и res
+  app.get('*', async (_req, res: Response) => { 
     try {
       const ssrApp = createSSRApp(App);
       const html = await renderToString(ssrApp);
